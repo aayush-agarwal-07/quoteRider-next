@@ -21,7 +21,7 @@ const CloseIcon: React.FC<CloseIconProps> = ({ onClick }) => (
       fill="currentColor"
       fillRule="evenodd"
       clipRule="evenodd"
-    ></path>
+    />
   </svg>
 );
 

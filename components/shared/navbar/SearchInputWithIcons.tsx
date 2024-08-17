@@ -32,7 +32,7 @@ const SearchInputWithIcons = () => {
         placeholder="Search"
         value={searchValue}
         onChange={handleInputChange}
-        className="pl-10 pr-10 text-base md:text-sm rounded-full"
+        className="pl-10 pr-10 text-sm md:text-lg rounded-full"
       />
 
       {/* Close Icon */}

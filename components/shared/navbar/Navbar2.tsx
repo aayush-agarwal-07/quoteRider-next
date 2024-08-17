@@ -5,6 +5,7 @@ import { MenuButton } from "./Menubutton";
 import { Button } from "@/components/ui/button";
 import Arrow from "./Arrow";
 import { useRouter } from "next/navigation";
+import { ModeToggle } from "@/components/ui/darkmodebtn";
 
 const Navbar2: React.FC = () => {
   const router = useRouter();
@@ -38,6 +39,7 @@ const Navbar2: React.FC = () => {
           Videos
         </Link>
       </MenuButton>
+      <ModeToggle />
       <Button
         onClick={handleSignInClick}
         className="border-2 text-lg font-normal border-black hover:bg-white hover:text-black"

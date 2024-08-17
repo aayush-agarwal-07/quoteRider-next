@@ -49,23 +49,23 @@ export function SignIn() {
   }
 
   return (
-    <section className="w-full h-screen flex p-12">
-      <div className="w-1/2 bg-blue-100 rounded-3xl"></div>
-      <h3 className="absolute top-10 right-10">
+    <section className="w-full h-screen flex p-7 md:p-12">
+      <div className="hidden md:block w-1/2 bg-blue-100 rounded-3xl"></div>
+      <div className="absolute top-10 right-10">
         <MenuButton>
           <Link
             href="/"
-            className={`text-gray-900 dark:text-gray-300 text-xl capitalize`}
+            className={`text-gray-900 dark:text-gray-300 text-lg md:text-xl capitalize`}
           >
             Home
           </Link>
         </MenuButton>
-      </h3>
-      <div className="w-1/2 flex flex-col items-center justify-center">
+      </div>
+      <div className="w-full md:w-1/2 flex flex-col items-center justify-center">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-2 w-[20vw]"
+            className="space-y-2 md:w-[20vw]"
           >
             <FormField
               control={form.control}
@@ -95,10 +95,10 @@ export function SignIn() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="text-md">
+            <Button type="submit" className="text-md w-full">
               Submit
             </Button>
-            <p>
+            <div className="text-sm md:text-lg pt-2">
               Don't have an account?
               <span
                 onClick={handleSignInClick}
@@ -106,7 +106,7 @@ export function SignIn() {
               >
                 Sign Up
               </span>
-            </p>
+            </div>
           </form>
         </Form>
       </div>

@@ -1,6 +1,7 @@
 "use client"; // Ensure this component is client-side
-import React from "react";
-import { usePathname, useRouter } from "next/navigation"; // Correct import for Next.js 13+ path handling
+
+import React, { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import SearchInputWithIcons from "./SearchInputWithIcons";
 import Navbar2 from "./Navbar2";
 import MenuIcon from "./MenuIcon";
@@ -9,97 +10,89 @@ import {
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import CloseIcon from "./CloseIcon";
 import { MenuButton } from "./Menubutton";
 import Link from "next/link";
 import Arrow from "./Arrow";
 import { Button } from "@/components/ui/button";
-import { IoMdClose } from "react-icons/io";
+import { ModeToggle } from "@/components/ui/darkmodebtn";
 
 const Navbar: React.FC = () => {
+  const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false);
   const pathname = usePathname();
   const router = useRouter();
 
+  const handleMenuItemClick = () => {
+    setIsSheetOpen(false);
+  };
+
+  const menuItems = [
+    { label: "Post", onClick: handleMenuItemClick },
+    { label: "About", onClick: handleMenuItemClick },
+    { label: "Video", onClick: handleMenuItemClick },
+  ];
+
   const handleSignInClick = () => {
     router.push("/sign-in");
-  }; // Use usePathname to get the current path
+    setIsSheetOpen(false);
+  };
 
-  // Define the routes where Navbar2 should not be rendered
-  const hideNavbarRoutes = ["/sign-in", "/sign-up"];
+  const hideNavbarRoutes: string[] = ["/sign-in", "/sign-up"];
 
-  // Conditionally render the section based on pathname
   if (hideNavbarRoutes.includes(pathname)) {
-    return null; // Return null if the current pathname matches the hideNavbarRoutes
+    return null;
   }
 
   return (
     <section className="w-full flex md:h-[10vh] flex-col items-center justify-between p-3 md:px-10">
       <div className="w-full h-full flex">
-        <div className="w-[79%] md:w-1/2 flex justify-between items-center">
-          {/* <Image src="/assets/Logo.png" width={40} height={40} alt="logo" priority /> */}
-          <h3 className="text-xl md:text-2xl">
+        <div className="w-[75%] md:w-1/2 flex justify-between items-center">
+          <Link href="/" className="text-xl md:text-2xl">
             Quote
             <span className="hidden md:inline-block"> Rider</span>
-          </h3>
+          </Link>
 
-          <div className=" w-[50vw] md:w-[20vw]">
+          <div className="w-[50vw] md:w-[25vw]">
             <SearchInputWithIcons />
           </div>
         </div>
-        <div className="md:w-1/2 hidden md:flex justify-end items-center ">
+        <div className="md:w-1/2 hidden md:flex justify-end items-center">
           <Navbar2 />
         </div>
-        <Sheet>
-          <SheetTrigger className="w-[17%] md:hidden flex items-center justify-end">
+        <div className="ml-3 w-[10%] md:hidden scale-[0.8]">
+          <ModeToggle />
+        </div>
+        <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+          <SheetTrigger
+            className="w-[10%] md:hidden flex items-center justify-end"
+            onClick={() => setIsSheetOpen(true)}
+          >
             <MenuIcon />
           </SheetTrigger>
           <SheetContent side="left">
             <SheetHeader>
-              <SheetTitle className="font-normal flex relative">
-                <div className="absolute top-1">
-                  <IoMdClose />
-                </div>
-                <span className="ml-5">Close</span>
-              </SheetTitle>
               <SheetDescription>
-                <nav className="flex flex-col gap-8">
-                  <MenuButton>
-                    <Link
-                      href="/post"
-                      className={`text-gray-900 dark:text-gray-300 text-xl capitalize`}
+                <div className="flex flex-col items-center justify-center gap-8 mt-10">
+                  {menuItems.map((item, index) => (
+                    <div
+                      key={index}
+                      onClick={item.onClick}
+                      className="text-gray-900 dark:text-gray-300 text-xl capitalize"
                     >
-                      Posts
-                    </Link>
-                  </MenuButton>
-                  <MenuButton>
-                    <Link
-                      href="/about"
-                      className={`text-gray-900 dark:text-gray-300 text-xl capitalize`}
-                    >
-                      About
-                    </Link>
-                  </MenuButton>
-                  <MenuButton>
-                    <Link
-                      href="/video"
-                      className={`text-gray-900 dark:text-gray-300 text-xl capitalize`}
-                    >
-                      Videos
-                    </Link>
-                  </MenuButton>
+                      {item.label}
+                    </div>
+                  ))}{" "}
                   <Button
                     onClick={handleSignInClick}
-                    className="border-2 text-lg font-normal border-black hover:bg-white hover:text-black"
+                    className="border-2 text-lg font-normal border-black hover:bg-white hover:text-black mt-[63vh] w-full"
                   >
                     Sign In
                     <span className="text-lg transition-transform duration-300 ease-in-out group-hover:translate-x-2 ml-2">
                       <Arrow />
                     </span>
                   </Button>
-                </nav>
+                </div>
               </SheetDescription>
             </SheetHeader>
           </SheetContent>

@@ -5,6 +5,7 @@ import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
 import Navbar from "@/components/shared/navbar/Navbar";
 import Footbar from "@/components/shared/Footbar";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,21 +26,29 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextTopLoader
-          color="#808080"
-          initialPosition={0.08}
-          crawlSpeed={200}
-          height={3}
-          crawl={true}
-          showSpinner={false}
-          easing="ease"
-          speed={200}
-          zIndex={1600}
-          showAtBottom={false}
-        />
-        <Navbar />
-        {children}
-        <Footbar />
+        <ThemeProvider
+          enableColorScheme={true}
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <NextTopLoader
+            color="#808080"
+            initialPosition={0.08}
+            crawlSpeed={200}
+            height={3}
+            crawl={true}
+            showSpinner={false}
+            easing="ease"
+            speed={200}
+            zIndex={1600}
+            showAtBottom={false}
+          />
+          <Navbar />
+          {children}
+          <Footbar />
+        </ThemeProvider>
       </body>
     </html>
   );
