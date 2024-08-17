@@ -1,11 +1,11 @@
 import React from 'react'
 
-const page = () => {
+const Footbar = () => {
   return (
     <div>
-      Hello
+      
     </div>
   )
 }
 
-export default page
+export default Footbar
