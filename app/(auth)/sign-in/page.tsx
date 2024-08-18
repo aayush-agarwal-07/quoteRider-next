@@ -26,14 +26,13 @@ const formSchema = z.object({
     .min(6, { message: "Password must be at least 6 characters." }),
 });
 
-export function SignIn() {
+export default function SignIn() {
   const router = useRouter();
 
   const handleSignInClick = () => {
     router.push("/sign-up");
   };
 
-  // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,10 +41,7 @@ export function SignIn() {
     },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     console.log(values);
   }
 
@@ -114,6 +110,3 @@ export function SignIn() {
     </section>
   );
 }
-
-// Add this line to export SignIn as the default export
-export default SignIn;
