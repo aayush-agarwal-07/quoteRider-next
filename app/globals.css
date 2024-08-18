@@ -67,3 +67,128 @@
     @apply bg-background text-foreground;
   }
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+.custom-scrollbar {
+  scrollbar-width: none;
+}
+
+/* For Internet Explorer and Edge */
+.custom-scrollbar {
+  -ms-overflow-style: none;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee {
+  animation: marquee 20s linear infinite;
+}
+
+@font-face {
+  font-family: "Lausanne";
+  font-weight: 300;
+  src: url(../fonts/TWKLausanne-300.woff2) format("woff");
+}
+
+@font-face {
+  font-family: "Lausanne";
+  font-weight: 400;
+  src: url(../fonts/TWKLausanne-400.woff2) format("woff");
+}
+
+@font-face {
+  font-family: "Lausanne";
+  font-weight: 500;
+  src: url(../fonts/TWKLausanne-500.woff2) format("woff");
+}
+
+.video {
+  @apply absolute top-0 left-0 w-full h-full object-cover z-10 hidden pointer-events-none;
+}
+
+.relative:hover .video {
+  display: block;
+}
+
+.boxshadowbtn {
+  padding: 12px;
+  width: 50%;
+  margin: auto;
+  border-radius: 25px;
+  box-shadow: 5px 5px #ffffff;
+  border: 2px solid #ffffff !important;
+  transition: all ease-in 0.2s !important;
+}
+
+.boxshadowbtn:hover {
+  box-shadow: none;
+  transform: translateY(4px) !important;
+  transition: all ease-in 0.2s;
+  opacity: 1 !important;
+}
+
+.signinboxshadowbtn {
+  padding: 6px 12px;
+  margin: auto;
+  border-radius: 25px;
+  box-shadow: 5px 5px #000000;
+  border: 1px solid #000000 !important;
+  transition: all ease-in 0.2s !important;
+}
+
+.signinboxshadowbtn:hover {
+  box-shadow: none;
+  transform: translateY(4px) !important;
+  transition: all ease-in 0.2s;
+  opacity: 1 !important;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.custom-spin {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* styles.css or a similar CSS file */
+@keyframes shrinkExpand {
+  0% {
+    width: 100%;
+  }
+  50% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.line-animation {
+  animation: shrinkExpand 2s ease-in-out infinite;
+}
+
+#videoCursor {
+  position: absolute; /* or fixed, depending on your needs */
+}
+
+

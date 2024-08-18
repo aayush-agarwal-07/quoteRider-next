@@ -114,7 +114,7 @@ export function SignUp() {
             <Button type="submit" className="text-md w-full">
               Submit
             </Button>
-            <div className="text-sm md:text-lg pt-2">
+            <div className="text-sm md:text-base pt-2">
               Already have an account?
               <span
                 onClick={handleSignInClick}

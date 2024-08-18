@@ -6,6 +6,7 @@ import "./globals.css";
 import Navbar from "@/components/shared/navbar/Navbar";
 import Footbar from "@/components/shared/Footbar";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster />
           <NextTopLoader
             color="#808080"
             initialPosition={0.08}

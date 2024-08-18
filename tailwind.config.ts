@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
-import { fontFamily } from 'tailwindcss/defaultTheme';
-const config = {
+import { fontFamily } from "tailwindcss/defaultTheme";
+
+const config: Config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -55,11 +56,14 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        black: "#070707",
+        beige: "#E0CCBB",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        full: "50%",
       },
       keyframes: {
         "accordion-down": {
@@ -70,14 +74,31 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        gooey: {
+          "0%": {
+            filter: "blur(20px)",
+            transform: "translate(10%, -10%) skew(0deg)",
+          },
+          "100%": {
+            filter: "blur(30px)",
+            transform: "translate(-10%, 10%) skew(-12deg)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        gooey: "gooey 6s ease-in-out infinite alternate",
+      },
+      spacing: {
+        "32vw": "32vw",
+      },
+      backgroundImage: {
+        "radial-gradient": "radial-gradient(circle, var(--tw-gradient-stops))",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+};
 
 export default config;

@@ -2,10 +2,9 @@
 
 import Link from "next/link";
 import { MenuButton } from "./Menubutton";
-import { Button } from "@/components/ui/button";
-import Arrow from "./Arrow";
 import { useRouter } from "next/navigation";
 import { ModeToggle } from "@/components/ui/darkmodebtn";
+import { ArrowRight } from "lucide-react";
 
 const Navbar2: React.FC = () => {
   const router = useRouter();
@@ -40,15 +39,12 @@ const Navbar2: React.FC = () => {
         </Link>
       </MenuButton>
       <ModeToggle />
-      <Button
-        onClick={handleSignInClick}
-        className="border-2 text-lg font-normal border-black hover:bg-white hover:text-black"
-      >
+      <button className="flex justify-center items-center gap-3 signinboxshadowbtn group w-[8vw] h-[4vh] relative -top-1 pointer" onClick={handleSignInClick}>
         Sign In
-        <span className="text-lg transition-transform duration-300 ease-in-out group-hover:translate-x-2 ml-2">
-          <Arrow />
+        <span className="text-lg transition-transform duration-300 ease-in-out group-hover:translate-x-2 text-blue-500">
+          <ArrowRight />
         </span>
-      </Button>
+      </button>
     </nav>
   );
 };
