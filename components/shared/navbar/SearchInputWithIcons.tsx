@@ -23,7 +23,7 @@ const SearchInputWithIcons = () => {
   return (
     <div className="relative">
       {/* Search Icon */}
-      <div className="absolute left-3 top-1/2 transform -translate-y-1/2  scale-125">
+      <div className="absolute left-3 top-1/2 transform -translate-y-1/2 scale-125">
         <Search />
       </div>
       {/* Input Field */}
@@ -32,7 +32,7 @@ const SearchInputWithIcons = () => {
         placeholder="Search"
         value={searchValue}
         onChange={handleInputChange}
-        className="pl-10 pr-10 text-sm md:text-lg rounded-2xl"
+        className="pl-10 pr-10 text-sm md:text-lg rounded-[20vw] outline-none border-blue-400"
       />
 
       {/* Close Icon */}

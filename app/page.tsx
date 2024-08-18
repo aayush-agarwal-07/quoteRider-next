@@ -1,4 +1,4 @@
-import Footer from "@/components/Footer";
+
 import Gooey from "@/components/Gooey";
 import Header from "@/components/Header";
 import Marquee from "@/components/Marquee";
@@ -9,14 +9,13 @@ import React from "react";
 
 const page = () => {
   return (
-    <main className="w-full h-full overflow-x-hidden">
+    <main className="w-full h-full">
       <Header />
       <VideoPlay />
-      <Marquee />
       <Top4Videos />
       <Gooey />
+      <Marquee />
       <Spread />
-      <Footer />
     </main>
   );
 };

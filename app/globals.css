@@ -154,6 +154,11 @@
   opacity: 1 !important;
 }
 
+.dark .signinboxshadowbtn {
+  box-shadow: 5px 5px #ffffff; /* Shadow for dark mode */
+  border: 1px solid #ffffff !important;
+}
+
 .pointer {
   cursor: pointer;
 }

@@ -100,7 +100,7 @@ const Top4Videos: React.FC = () => {
 
   return (
     <section
-      className="flex flex-col items-center w-full text-[#0D0E13] relative border-t-[1px] border-blue-400"
+      className="flex flex-col items-center w-full text-[#0D0E13] relative overflow-hidden"
       id="work-section"
     >
       <div className="mr-[24vw] mb-4 md:mb-[10vh]">
@@ -108,9 +108,7 @@ const Top4Videos: React.FC = () => {
           ref={heading}
           className="text-[7vw] leading-[17vw] transform origin-left"
         >
-          &quot;Encourages expressing
-          <br />
-          ideas through impactful quotes&quot;
+          Top 4 Videos<span className="w-3 h-3 rounded-full text-blue-400 mr-2">.</span>
         </h1>
       </div>
       <div className="flex flex-wrap w-full relative left-[10%]">
@@ -142,7 +140,7 @@ const Top4Videos: React.FC = () => {
               <span>
                 <strong>Ali Ali - </strong>
               </span>
-              <span>Unique director&apos;s portfolio</span>
+              <span>Unique director's portfolio</span>
             </p>
           </div>
         </div>

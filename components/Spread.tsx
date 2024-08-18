@@ -21,6 +21,50 @@ const Spread = () => {
   };
 
   useEffect(() => {
+    // GSAP Animations for headings
+    if (heading0.current && heading1.current) {
+      gsap.fromTo(
+        heading0.current,
+        {
+          rotation: 6,
+          opacity: 0,
+          y: () => heading0.current!.clientHeight * 0.5,
+        },
+        {
+          rotation: 0,
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: 'power4.out',
+          scrollTrigger: {
+            trigger: heading1.current,
+            start: 'center bottom',
+          },
+        }
+      );
+
+      gsap.fromTo(
+        heading1.current,
+        {
+          rotation: 6,
+          opacity: 0,
+          y: () => heading1.current!.clientHeight * 0.5,
+        },
+        {
+          rotation: 0,
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: 'power4.out',
+          scrollTrigger: {
+            trigger: heading1.current,
+            start: 'center bottom',
+          },
+        }
+      );
+    }
+
+    // Update rotation based on mouse position
     const handleMouseMove = (e: MouseEvent) => {
       const mouseX = e.clientX;
       const mouseY = e.clientY;
@@ -64,17 +108,18 @@ const Spread = () => {
           </p>
         </div>
         <h2 className="text-center text-[14vw]">
-          <div className="leading-9 tracking-tighter">
+          <div className="leading-2 tracking-tighter">
             <div ref={heading0}>Spread</div>
           </div>
           <div className="leading-0 tracking-tighter">
             <div ref={heading1}>the Content</div>
           </div>
         </h2>
-        <p className="text-center md:text-[1.66667vw] leading-[5vw] md:leading-[2.22222vw]">
+        <p className="mb-4 text-center md:text-[1.66667vw] leading-[5vw] md:leading-[2.22222vw] relative z-20">
           Find out more about my work on either of
           <br />
-          these two forms Video/Writing<span className="text-blue-500 w-2">.</span>
+          these two forms Video/Writing
+          <span className="text-blue-500 w-2">.</span>
         </p>
       </div>
       {/* Eye */}
@@ -112,7 +157,7 @@ const Spread = () => {
           <h1 className="text-3xl md:text-7xl tracking-tight">Find Form</h1>
         </div>
         <div className="px-0 md:px-20">
-          <div className="mx-7 flex md:space-x-[42vw] mt-5">
+          <div className="mx-7 flex space-x-[35vw] md:space-x-[42vw] mt-5">
             {" "}
             {/* Added space-x-4 to give spacing between items */}
             <h1 className="flex items-center">
@@ -129,7 +174,7 @@ const Spread = () => {
 
           <div className="cards w-full flex justify-center gap-0 md:gap-2 mt-1 relative">
             <div
-              className={`absolute left-[46%] z-10 text-5xl transition-all duration-500 text-blue-400 font-bold ${
+              className={`absolute left-[41.2%] md:left-[45%] z-10 text-2xl md:text-5xl transition-all duration-500 text-blue-400 font-bold ${
                 hoveredImage === "video"
                   ? "top-[40%] opacity-100"
                   : "top-[46%] opacity-0"
@@ -138,7 +183,7 @@ const Spread = () => {
               Video
             </div>
             <div
-              className={`absolute left-[45%] z-10 text-5xl transition-all duration-500 text-blue-400 font-bold ${
+              className={`absolute left-[40%] md:left-[45%] z-10 text-2xl md:text-5xl transition-all duration-500 text-blue-400 font-bold ${
                 hoveredImage === "writing"
                   ? "top-[40%] opacity-100"
                   : "top-[46%] opacity-0"

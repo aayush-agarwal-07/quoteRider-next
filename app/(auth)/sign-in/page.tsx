@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -15,9 +14,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useRouter } from "next/navigation";
 import { MenuButton } from "@/components/shared/navbar/Menubutton";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -27,12 +26,6 @@ const formSchema = z.object({
 });
 
 export default function SignIn() {
-  const router = useRouter();
-
-  const handleSignInClick = () => {
-    router.push("/sign-up");
-  };
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,24 +34,60 @@ export default function SignIn() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log("Form Submitted"); // Debugging
+
+    try {
+      const response = await fetch("https://quoterider-server.onrender.com/api/auth/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      console.log("Response Status:", response.status); // Debugging
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Success:", data);
+        window.location.href = "/dashboard"; // Redirect manually for client-side navigation
+      } else {
+        const errorData = await response.json();
+        console.error("Error:", errorData);
+      }
+    } catch (error) {
+      console.error("Request failed:", error);
+    }
   }
 
   return (
     <section className="w-full h-screen flex p-7 md:p-12">
-      <div className="hidden md:block w-1/2 bg-blue-100 rounded-3xl"></div>
-      <div className="absolute top-10 right-10">
+      <div
+        className="hidden md:block w-1/2 rounded-3xl scale-75 pl-7"
+        style={{
+          backgroundImage: "url(/assets/Illustration.png)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+      <div className="absolute top-10 right-10 lg:right-[10vh]">
         <MenuButton>
           <Link
             href="/"
-            className={`text-gray-900 dark:text-gray-300 text-lg md:text-xl capitalize`}
+            className="text-gray-900 dark:text-gray-300 text-lg md:text-xl capitalize"
           >
             Home
           </Link>
         </MenuButton>
       </div>
-      <div className="w-full md:w-1/2 flex flex-col items-center justify-center">
+      <div className="absolute top-10 left-10 lg:left-[10vh] cursor-pointer text-blue-500">
+        <Link href="/" className="flex items-center">
+          <ArrowLeft />
+          <span className="ml-2">Go Back</span>
+        </Link>
+      </div>
+      <div className="w-full md:w-[40%] flex flex-col items-center justify-center">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -97,12 +126,12 @@ export default function SignIn() {
             </Button>
             <div className="text-sm md:text-base pt-2">
               Don&apos;t have an account?
-              <span
-                onClick={handleSignInClick}
-                className="text-blue-500 ml-2 cursor-pointer"
+              <Link
+                href="/sign-up"
+                className="text-blue-500 ml-2"
               >
                 Sign Up
-              </span>
+              </Link>
             </div>
           </form>
         </Form>

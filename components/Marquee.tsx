@@ -2,7 +2,7 @@ import React from "react";
 
 const Marquee = () => {
   return (
-    <div className="w-full h-[25vh] md:h-[60vh] rounded-3xl flex flex-nowrap overflow-hidden custom-scrollbar">
+    <div className="w-full h-[25vh] md:h-[60vh] rounded-3xl flex flex-nowrap overflow-hidden custom-scrollbar -mb-10 md:mb-0">
       <div className="marquee w-[100%] h-[25vh] md:h-[53%] flex-shrink-0 my-auto flex gap-8 md:gap-12">
         <video
           muted

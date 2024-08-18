@@ -13,8 +13,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Link from "next/link";
-import Arrow from "./Arrow";
-import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 import { ModeToggle } from "@/components/ui/darkmodebtn";
 
 const Navbar: React.FC = () => {
@@ -27,9 +26,9 @@ const Navbar: React.FC = () => {
   };
 
   const menuItems = [
-    { label: "Post", onClick: handleMenuItemClick },
-    { label: "About", onClick: handleMenuItemClick },
-    { label: "Video", onClick: handleMenuItemClick },
+    { label: "About", href: "/about", onClick: handleMenuItemClick },
+    { label: "Post", href: "/post", onClick: handleMenuItemClick },
+    { label: "Video", href: "/video", onClick: handleMenuItemClick },
   ];
 
   const handleSignInClick = () => {
@@ -47,9 +46,10 @@ const Navbar: React.FC = () => {
     <section className="w-full flex md:h-[10vh] flex-col items-center justify-between p-3 md:px-10">
       <div className="w-full h-full flex">
         <div className="w-[75%] md:w-1/2 flex justify-between items-center">
-          <Link href="/" className="text-xl md:text-2xl">
+          <Link href="/" className="text-xl font-medium md:text-2xl">
             Quote
             <span className="hidden md:inline-block"> Rider</span>
+            <span className="text-blue-600 w-3">.</span>
           </Link>
 
           <div className="w-[50vw] md:w-[25vw]">
@@ -74,23 +74,21 @@ const Navbar: React.FC = () => {
               <SheetDescription>
                 <div className="flex flex-col items-center justify-center gap-8 mt-10">
                   {menuItems.map((item, index) => (
-                    <div
+                    <Link
+                      href={item.href}
                       key={index}
                       onClick={item.onClick}
                       className="text-gray-900 dark:text-gray-300 text-xl capitalize"
                     >
                       {item.label}
-                    </div>
+                    </Link>
                   ))}{" "}
-                  <Button
-                    onClick={handleSignInClick}
-                    className="border-2 text-lg font-normal border-black hover:bg-white hover:text-black mt-[63vh] w-full"
-                  >
-                    Sign In
-                    <span className="text-lg transition-transform duration-300 ease-in-out group-hover:translate-x-2 ml-2">
-                      <Arrow />
-                    </span>
-                  </Button>
+                  <button className="flex justify-center items-center gap-3 signinboxshadowbtn group md:w-[8vw] h-[4vh] relative -top-1 pointer" onClick={handleSignInClick}>
+        Sign In
+        <span className="text-lg transition-transform duration-300 ease-in-out group-hover:translate-x-2 text-blue-500">
+          <ArrowRight />
+        </span>
+      </button>
                 </div>
               </SheetDescription>
             </SheetHeader>

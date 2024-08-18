@@ -1,10 +1,9 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-import { Button } from "@/components/ui/button";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -13,44 +12,46 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { useRouter } from "next/navigation";
-import { MenuButton } from "@/components/shared/navbar/Menubutton";
-import Link from "next/link";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { MenuButton } from '@/components/shared/navbar/Menubutton';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 
 const formSchema = z.object({
-  username: z.string().min(1, { message: "Username is required." }),
-  email: z.string().email({ message: "Invalid email address." }),
+  username: z.string().min(1, { message: 'Username is required.' }),
+  email: z.string().email({ message: 'Invalid email address.' }),
   password: z
     .string()
-    .min(6, { message: "Password must be at least 6 characters." }),
+    .min(6, { message: 'Password must be at least 6 characters.' }),
 });
 
 export default function SignUp() {
-  const router = useRouter();
-
-  const handleSignInClick = () => {
-    router.push("/sign-in");
-  };
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
-      email: "",
-      password: "",
+      username: '',
+      email: '',
+      password: '',
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    // You can handle form submission here
   }
 
   return (
-    <section className="w-full h-screen flex p-7 md:p-12 relative">
-      <div className="hidden md:block w-1/2 bg-blue-100 rounded-3xl"></div>
-      <div className="absolute top-10 right-10">
+    <section className="w-full h-screen flex p-7 md:p-12 relative overflow-visible">
+      <div
+        className="hidden md:block w-1/2 rounded-3xl scale-75 pl-7"
+        style={{
+          backgroundImage: 'url(/assets/Illustration.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      <div className="absolute top-10 right-10 lg:right-[10vh]">
         <MenuButton>
           <Link
             href="/"
@@ -60,7 +61,13 @@ export default function SignUp() {
           </Link>
         </MenuButton>
       </div>
-      <div className="w-full md:w-1/2 flex flex-col items-center justify-center">
+      <div className="absolute top-10 left-10 lg:left-[10vh] cursor-pointer text-blue-500">
+        <Link href="/" className="flex items-center">
+          <ArrowLeft />
+          <span className="ml-2">Go Back</span>
+        </Link>
+      </div>
+      <div className="w-full md:w-[40%] flex flex-col items-center justify-center">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -113,12 +120,12 @@ export default function SignUp() {
             </Button>
             <div className="text-sm md:text-base pt-2">
               Already have an account?
-              <span
-                onClick={handleSignInClick}
-                className="text-blue-500 ml-2 cursor-pointer"
+              <Link
+                href="/sign-in"
+                className="text-blue-500 ml-2"
               >
                 Sign In
-              </span>
+              </Link>
             </div>
           </form>
         </Form>

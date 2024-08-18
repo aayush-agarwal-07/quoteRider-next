@@ -1,9 +1,18 @@
+"use client";
+
 import React from "react";
 import Contact from "./Contact";
 import { InstagramLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import { LinkedinIcon, MailPlus } from "lucide-react";
 import Mail from "./Mail";
+import { usePathname } from "next/navigation";
 const Footer: React.FC = () => {
+  const pathname = usePathname();
+  const hideFooterRoutes: string[] = ["/sign-in", "/sign-up"];
+
+  if (hideFooterRoutes.includes(pathname)) {
+    return null;
+  }
   return (
     <footer className="relative w-full h-[90vh] md:h-[80vh] bg-black">
       <div className="absolute w-[100%] h-[30%] md:w-[60%] md:h-[60%] md:top-0 md:right-0 -z-1 bg-gradient-radial from-transparent to-[#070707] via-[#070707]">

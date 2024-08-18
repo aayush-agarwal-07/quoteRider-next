@@ -6,6 +6,7 @@ import "./globals.css";
 import Navbar from "@/components/shared/navbar/Navbar";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -48,6 +49,7 @@ export default function RootLayout({
           />
           <Navbar />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
