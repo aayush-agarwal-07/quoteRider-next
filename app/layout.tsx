@@ -4,7 +4,6 @@ import NextTopLoader from "nextjs-toploader";
 
 import "./globals.css";
 import Navbar from "@/components/shared/navbar/Navbar";
-import Footbar from "@/components/shared/Footbar";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 
@@ -49,7 +48,6 @@ export default function RootLayout({
           />
           <Navbar />
           {children}
-          <Footbar />
         </ThemeProvider>
       </body>
     </html>

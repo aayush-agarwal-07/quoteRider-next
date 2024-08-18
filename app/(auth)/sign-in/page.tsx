@@ -32,6 +32,7 @@ export function SignIn() {
   const handleSignInClick = () => {
     router.push("/sign-up");
   };
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -99,7 +100,7 @@ export function SignIn() {
               Submit
             </Button>
             <div className="text-sm md:text-base pt-2">
-              Don't have an account?
+              Don&apos;t have an account?
               <span
                 onClick={handleSignInClick}
                 className="text-blue-500 ml-2 cursor-pointer"

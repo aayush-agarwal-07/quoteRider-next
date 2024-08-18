@@ -108,7 +108,9 @@ const Top4Videos: React.FC = () => {
           ref={heading}
           className="text-[7vw] leading-[17vw] transform origin-left"
         >
-          Top 4 Videos<span className="w-3 h-3 rounded-full text-blue-400 mr-2">.</span>
+          &quot;Encourages expressing
+          <br />
+          ideas through impactful quotes&quot;
         </h1>
       </div>
       <div className="flex flex-wrap w-full relative left-[10%]">
@@ -140,7 +142,7 @@ const Top4Videos: React.FC = () => {
               <span>
                 <strong>Ali Ali - </strong>
               </span>
-              <span>Unique director's portfolio</span>
+              <span>Unique director&apos;s portfolio</span>
             </p>
           </div>
         </div>
